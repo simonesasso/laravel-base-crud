@@ -9,5 +9,6 @@
     <li>PHONE NUMBER: {{$omino["phone_number"]}}</li>
     <li>ROLE: {{$omino["role"]}}</li>
     <a href="{{route("delete", $omino["id"])}}">Delete</a>
+    <a href="{{route("edit", $omino["id"])}}">Edit</a>
   </ul>
 @endsection

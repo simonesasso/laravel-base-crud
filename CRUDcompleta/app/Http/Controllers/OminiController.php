@@ -23,6 +23,54 @@ class OminiController extends Controller
   {
     $omino = Omino::findOrFail($id);
     $omino -> delete();
-    return  redirect()->route('home');;
+    return  redirect()->route('home');
+  }
+
+  public function create()
+  {
+    return view("createlayout");
+  }
+
+  public function store(Request $request)
+  {
+    $dataOmino = $request->all();
+    $Omino = new Omino;
+
+    $Omino -> first_name = $dataOmino["first_name"];
+    $Omino -> last_name = $dataOmino["last_name"];
+    $Omino -> address = $dataOmino["address"];
+    $Omino -> code = $dataOmino["code"];
+    $Omino -> state = $dataOmino["state"];
+    $Omino -> phone_number = $dataOmino["phone_number"];
+    $Omino -> role = $dataOmino["role"];
+
+    $Omino -> save();
+
+    return  redirect()->route('home');
+  }
+
+  public function edit($id)
+  {
+    $omino = Omino::findOrFail($id);
+
+    return view("editlayout", compact("omino"));
+  }
+
+  public function update(Request $request, $id)
+  {
+    $dataOmino = $request->all();
+    $omino = Omino::findOrFail($id);
+
+    $omino -> first_name = $dataOmino["first_name"];
+    $omino -> last_name = $dataOmino["last_name"];
+    $omino -> address = $dataOmino["address"];
+    $omino -> code = $dataOmino["code"];
+    $omino -> state = $dataOmino["state"];
+    $omino -> phone_number = $dataOmino["phone_number"];
+    $omino -> role = $dataOmino["role"];
+
+    $omino -> save();
+
+    return redirect() -> route("home");
   }
 }
