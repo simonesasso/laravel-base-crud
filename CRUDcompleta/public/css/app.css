@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+footer,
+header {
+  background-color: blue;
+  color: white;
+  height: 10vh;
+  display: flex;
+}
+
+footer > * {
+  margin: auto;
+}
+
+header > * {
+  margin: auto;
+}
+
+#content {
+  height: 80vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#content > * {
+  margin: auto;
+}
+
