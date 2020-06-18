@@ -34,17 +34,17 @@ class OminiController extends Controller
   public function store(Request $request)
   {
     $dataOmino = $request->all();
-    $Omino = new Omino;
+    $omino = new Omino;
 
-    $Omino -> first_name = $dataOmino["first_name"];
-    $Omino -> last_name = $dataOmino["last_name"];
-    $Omino -> address = $dataOmino["address"];
-    $Omino -> code = $dataOmino["code"];
-    $Omino -> state = $dataOmino["state"];
-    $Omino -> phone_number = $dataOmino["phone_number"];
-    $Omino -> role = $dataOmino["role"];
+    $omino -> first_name = $dataOmino["first_name"];
+    $omino -> last_name = $dataOmino["last_name"];
+    $omino -> address = $dataOmino["address"];
+    $omino -> code = $dataOmino["code"];
+    $omino -> state = $dataOmino["state"];
+    $omino -> phone_number = $dataOmino["phone_number"];
+    $omino -> role = $dataOmino["role"];
 
-    $Omino -> save();
+    $omino -> save();
 
     return  redirect()->route('home');
   }
