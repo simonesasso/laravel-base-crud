@@ -33,20 +33,29 @@ class OminiController extends Controller
 
   public function store(Request $request)
   {
-    $dataOmino = $request->all();
+    $validatedData = $request->validate([
+      "first_name" => 'required',
+      "last_name" => 'required',
+      "address" => 'required',
+      "code" => 'required',
+      "state" => 'required',
+      "phone_number" => 'required',
+      "role" => 'required',
+    ]);
+
     $omino = new Omino;
 
-    $omino -> first_name = $dataOmino["first_name"];
-    $omino -> last_name = $dataOmino["last_name"];
-    $omino -> address = $dataOmino["address"];
-    $omino -> code = $dataOmino["code"];
-    $omino -> state = $dataOmino["state"];
-    $omino -> phone_number = $dataOmino["phone_number"];
-    $omino -> role = $dataOmino["role"];
+    $omino -> first_name = $validatedData["first_name"];
+    $omino -> last_name = $validatedData["last_name"];
+    $omino -> address = $validatedData["address"];
+    $omino -> code = $validatedData["code"];
+    $omino -> state = $validatedData["state"];
+    $omino -> phone_number = $validatedData["phone_number"];
+    $omino -> role = $validatedData["role"];
 
     $omino -> save();
 
-    return  redirect()->route('home');
+    return  redirect()->route('home')->withSuccess("Created " . $validatedData["first_name"] . " successfully!!");
   }
 
   public function edit($id)
@@ -58,19 +67,31 @@ class OminiController extends Controller
 
   public function update(Request $request, $id)
   {
-    $dataOmino = $request->all();
+
+
+
+    $validatedData = $request->validate([
+      "first_name" => 'required',
+      "last_name" => 'required',
+      "address" => 'required',
+      "code" => 'required',
+      "state" => 'required',
+      "phone_number" => 'required',
+      "role" => 'required',
+    ]);
+
     $omino = Omino::findOrFail($id);
 
-    $omino -> first_name = $dataOmino["first_name"];
-    $omino -> last_name = $dataOmino["last_name"];
-    $omino -> address = $dataOmino["address"];
-    $omino -> code = $dataOmino["code"];
-    $omino -> state = $dataOmino["state"];
-    $omino -> phone_number = $dataOmino["phone_number"];
-    $omino -> role = $dataOmino["role"];
+    $omino -> first_name = $validatedData["first_name"];
+    $omino -> last_name = $validatedData["last_name"];
+    $omino -> address = $validatedData["address"];
+    $omino -> code = $validatedData["code"];
+    $omino -> state = $validatedData["state"];
+    $omino -> phone_number = $validatedData["phone_number"];
+    $omino -> role = $validatedData["role"];
 
     $omino -> save();
 
-    return redirect() -> route("home");
+    return redirect() -> route("show", $omino["id"])->withSuccess("Updated successfully!!");
   }
 }
