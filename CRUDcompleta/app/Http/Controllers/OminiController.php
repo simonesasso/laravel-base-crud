@@ -34,13 +34,13 @@ class OminiController extends Controller
   public function store(Request $request)
   {
     $validatedData = $request->validate([
-      "first_name" => 'required',
-      "last_name" => 'required',
+      "first_name" => 'required|alpha',
+      "last_name" => 'required|alpha',
       "address" => 'required',
-      "code" => 'required',
-      "state" => 'required',
+      "code" => 'required|integer',
+      "state" => 'required|alpha',
       "phone_number" => 'required',
-      "role" => 'required',
+      "role" => 'required|alpha',
     ]);
 
     $omino = new Omino;
